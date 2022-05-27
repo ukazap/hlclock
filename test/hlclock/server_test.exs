@@ -1,6 +1,11 @@
 defmodule HLClock.ServerTest do
   use ExUnit.Case, async: false
 
+  setup_all do
+    start_supervised!(HLClock.MockTime)
+    :ok
+  end
+
   describe "node names" do
     test "HLClocks can be given a node id" do
       node_id = fn -> 12345 end

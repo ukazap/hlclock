@@ -2,7 +2,7 @@ defmodule HLClock.Server do
   @moduledoc false
   use GenServer
 
-  alias HLClock.{NodeId, Timestamp}
+  alias HLClock.{NodeId, PhysicalTime, Timestamp}
 
   @gen_server_opts [
     :debug,
@@ -69,7 +69,7 @@ defmodule HLClock.Server do
     end
   end
 
-  defp physical_time, do: System.os_time(:millisecond)
+  defp physical_time, do: PhysicalTime.now()
 
   defp interval(%{max_drift: max_drift}), do: round(max_drift / 2)
 

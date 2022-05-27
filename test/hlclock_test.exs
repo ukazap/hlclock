@@ -2,6 +2,7 @@ defmodule HLClockTest do
   use ExUnit.Case, async: false
 
   setup do
+    {:ok, _pid} = HLClock.MockTime.start_link([])
     {:ok, pid} = HLClock.start_link()
 
     {:ok, hlc: pid}
